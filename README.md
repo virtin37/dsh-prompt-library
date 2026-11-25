@@ -11,26 +11,13 @@
 
 ## 安装
 
-**方式一：npm 包**
+目前没有发布到 npm，用本地目录安装：
 
-```sh
-dsh plugin --profile desktop add @virtin37/dsh-prompt-library@latest
-```
+1. clone 或复制本目录到一个固定的位置；
+2. 在 DSH 里打开 **Plugins → Add plugin**，选中这个目录；
+3. 如果没看到「提示词」按钮，刷新一次页面。
 
-这条命令只负责把包装进 profile。**还要启用**，任选一种：
-
-- 打开 DSH 的 **插件（Plugins）** 页，找到 `@virtin37/dsh-prompt-library`，把开关打开；
-- 或者对 DSH 里的 agent 说一句「启用 @virtin37/dsh-prompt-library」。
-
-启用后刷新一次页面；桌面版也可以重启客户端。
-
-> 为什么是两步：`dsh plugin` 只是把参数转给 pnpm，只改依赖；激活写在 profile 的 `dsh.profile.bundles` 里，这一步目前只有插件管理器（GUI 或 agent 工具）会做。
-
-**方式二：本地目录（开发时用）**
-
-1. clone 或复制本目录到固定位置；
-2. **Plugins → Add plugin** 选中该目录；
-3. 没看到「提示词」按钮就刷新一次。
+> 包名 `@virtin37/dsh-prompt-library` 已经占好，将来发布 npm 之后再补一条安装命令。
 
 ## 入口
 

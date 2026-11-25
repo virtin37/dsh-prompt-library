@@ -4,6 +4,14 @@
   "description": "Collect, group, search and fill prompt templates from the session's right sidebar, then insert them into the composer without sending.",
   "license": "MIT",
   "author": "virtin37",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/virtin37/dsh-prompt-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/virtin37/dsh-prompt-library/issues"
+  },
+  "homepage": "https://github.com/virtin37/dsh-prompt-library#readme",
   "type": "module",
   "keywords": [
     "dsh",

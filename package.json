@@ -1,7 +1,7 @@
 {
   "name": "@virtin37/dsh-prompt-library",
   "version": "0.1.0",
-  "description": "Collect, group, search and fill prompt templates from the session's right sidebar, then insert them into the composer without sending.",
+  "description": "DeepSeek Harness 右侧栏的提示词库：分组、搜索、填空后插入输入框，不自动发送。",
   "license": "MIT",
   "author": "virtin37",
   "repository": {
@@ -34,7 +34,7 @@
     "cordis.patch.yml",
     "locale/*.json",
     "README.md",
-    "README.zh.md",
+    "README.en.md",
     "LICENSE",
     "docs",
     "icon.svg"

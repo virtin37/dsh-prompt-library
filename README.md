@@ -1,38 +1,30 @@
-# Prompt library
+# 提示词库
 
-English | [中文](README.zh.md)
+中文 | [English](README.en.md)
 
-A right sidebar panel for the prompt templates you paste into a session over and
-over: group them, search them, fold a group away, fill the blanks, insert them
-into the composer — you still press send.
+把反复粘贴的提示词模板收进会话右侧栏：分组、搜索、折叠分组、填空，再插进输入框——发送仍然由你按。
 
-## Requirements
+## 环境要求
 
-- DeepSeek Harness `^0.2.3-alpha.2` (declared in `engines.dsh`).
-- The plugin builds on alpha client APIs — the right sidebar tab registry
-  (`ctx.sidebarRightTabs`) and the session input facade (`inputActions`). A
-  newer DSH release may need a matching plugin release.
+- DeepSeek Harness `^0.2.3-alpha.2`（见 `engines.dsh`）。
+- 插件依赖两个 alpha 客户端接口：右侧栏标签页注册（`ctx.sidebarRightTabs`）和会话输入门面（`inputActions`）。DSH 升级后可能需要对应的插件版本。
 
-## Install
+## 安装
 
-1. Clone or copy this directory somewhere stable.
-2. In DSH open **Plugins → Add plugin** and select the directory.
-3. If the **Prompt** button does not appear, reload the page once.
+1. 把本目录 clone 或复制到一个固定的位置。
+2. 在 DSH 里打开 **Plugins → Add plugin**，选中这个目录。
+3. 如果没看到「提示词」按钮，刷新一次页面。
 
-## Where it lives
+## 入口
 
-- **Prompt library** tab in the right sidebar. It coexists with the
-  conversation, so you can read the transcript while you pick a template. It is
-  also listed on the right sidebar's guide page and its add menu.
-- **Prompt** button at the left of the composer tool row, next to the permission
-  and model controls, opens the same tab.
+- 右侧栏的 **提示词库** 标签页。它和会话并存，可以一边看对话一边挑模板；右侧栏的引导页与加号菜单里也会列出它。
+- 输入框工具行左侧的 **提示词** 按钮，打开同一个标签页。
 
-![The prompt library tab in the right sidebar](docs/panel.png)
+![右栏里的提示词库标签页](docs/panel.png)
 
-## How a template works
+## 模板怎么写
 
-Write the template as plain text. A fill-in spot is Chinese square brackets
-around a short name:
+纯文本即可。待填的位置用中文方括号包一个短名字：
 
 ```
 请按【项目名】的既有风格改写下面这段，保持 API 签名不变：
@@ -40,52 +32,35 @@ around a short name:
 【原文】
 ```
 
-Clicking the template expands it in place. With one blank it shows the template
-and that blank together. With two or more it walks them one at a time: a
-progress count (`2 / 5`), the blank's name, and the surrounding sentence so you
-know what is being asked. Enter advances, Enter on the last one inserts,
-**Previous** and **Skip** are there when you need them, and **Show all** switches
-to the flat form (then **One by one** switches back).
+点模板就地展开。只有一个空位时，模板和这个空位一起显示；两个以上时逐个提问：进度（`2 / 5`）、空位名字、以及它前后那句话，让你知道在问什么。回车走下一个，最后一个回车直接插入；还有 **上一个**、**跳过**，**全部列出** 可以切回表单视图。
 
-Every `【…】` occurrence counts, including empty brackets (`【】`, labelled
-"Blank 3") and repeated names. A repeated name shares one value across its
-occurrences; the later step says so. Bracket contents may be up to 200
-characters on one line.
+每一处 `【…】` 都算一个空位，包括空括号（`【】`，显示为“空白 3”）和重复的名字。同名的空位共用一个值，走到后面时会提示。括号内的名字最长 200 字、不能跨行。
 
-Insert pushes one undoable edit into the composer; you still press send.
+插入只是往输入框里写一次可撤销的编辑，不会发送。
 
-![A template expanded, its blank listed with a value, and the two insert buttons](docs/fill.png)
+![展开的模板：空位列出、填入值、两个插入按钮](docs/fill.png)
 
-## Data
+## 数据
 
-Groups, templates and the last values you typed are stored in this browser's
-`localStorage` under `dsh.prompt-library.v1`. They do not sync across browsers or
-machines, and a different origin (for example a different port) sees a different
-library. Deleting the plugin leaves the data behind but nothing reads it.
+分组、模板和你上次填过的值都存在浏览器的 `localStorage` 里，键名 `dsh.prompt-library.v1`。不跨浏览器、不跨机器同步；换个端口（origin 不同）就是另一库。卸载插件不会删除这些数据，但也没有界面再读它。
 
-## Development
+## 开发
 
-The browser half is a single plain-JavaScript module (`client.js`); there is no
-build step. Edit it, then recompose the profile (toggle the plugin row, or run
-`dsh` against the same profile) and the open page picks the new module up through
-the client HMR channel.
+浏览器端就是单个纯 JavaScript 模块（`client.js`），没有构建步骤。改完重新组合 profile（切换一次插件开关，或用同一个 profile 跑 `dsh`），打开的页面会通过客户端 HMR 通道拿到新模块。
 
 ```
 npm test
 ```
 
-runs the parsing tests in `test/slots.test.mjs` against the real `client.js` in a
-`vm` context, so the tests exercise the shipped code rather than a copy.
+会在 `vm` 上下文里加载真实的 `client.js` 并测试解析逻辑，测的是发出去的代码本身，不是副本。
 
-## Known limits
+## 已知限制
 
-- Insertion lands at the composer's current caret. With an empty draft that is
-  the beginning of the message; with existing text it is where the caret sits.
-- A template whose `【】` brackets are ordinary prose can be inserted with
-  **Insert as written** instead of filling.
-- A fill-in name must be on one line and at most 200 characters.
-- No import/export yet.
+- 插入位置是输入框当前光标处：草稿为空时就是开头，已有内容时是光标所在处。
+- 模板里 `【】` 本来就是正文的话，用「插入原文」绕开填空。
+- 空位名字必须单行、最多 200 字。
+- 还没有导入导出。
 
-## License
+## 许可
 
-MIT.
+MIT。

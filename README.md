@@ -27,6 +27,8 @@ into the composer — you still press send.
 - **Prompt** button at the left of the composer tool row, next to the permission
   and model controls, opens the same tab.
 
+![The prompt library tab in the right sidebar](docs/panel.png)
+
 ## How a template works
 
 Write the template as plain text. A fill-in spot is Chinese square brackets
@@ -51,6 +53,8 @@ occurrences; the later step says so. Bracket contents may be up to 200
 characters on one line.
 
 Insert pushes one undoable edit into the composer; you still press send.
+
+![A template expanded, its blank listed with a value, and the two insert buttons](docs/fill.png)
 
 ## Data
 

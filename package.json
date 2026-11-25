@@ -1,0 +1,53 @@
+{
+  "name": "@virtin37/dsh-prompt-library",
+  "version": "0.1.0",
+  "description": "Collect, group, search and fill prompt templates from the session's right sidebar, then insert them into the composer without sending.",
+  "license": "MIT",
+  "author": "virtin37",
+  "type": "module",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "dsh-bundle",
+    "prompt-library",
+    "prompts",
+    "templates"
+  ],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "icon.svg"
+  ],
+  "scripts": {
+    "test": "node test/slots.test.mjs"
+  },
+  "engines": {
+    "dsh": "^0.2.3-alpha.2",
+    "node": ">=18"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
+      ]
+    }
+  }
+}

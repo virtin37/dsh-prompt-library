@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Prompt library",
+    "description": "Collect, group and search prompt templates in the session's right sidebar, fill their variables, and insert the result into the composer without sending it. Open it with the Prompt button in the composer tool row or the Prompt library tab in the right sidebar. Wrap fill-in spots as 【name】 in a template to fill them one by one, or insert the raw text unchanged. Insertion only edits the current session's draft; nothing is sent automatically. Templates live in this browser's localStorage and do not sync across devices; removing the plugin leaves the data in place but no interface reads it."
+  }
+}

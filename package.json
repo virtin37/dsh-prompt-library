@@ -12,6 +12,9 @@
     "url": "https://github.com/virtin37/dsh-prompt-library/issues"
   },
   "homepage": "https://github.com/virtin37/dsh-prompt-library#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "keywords": [
     "dsh",
@@ -36,7 +39,6 @@
     "README.md",
     "README.en.md",
     "LICENSE",
-    "docs",
     "icon.svg"
   ],
   "scripts": {

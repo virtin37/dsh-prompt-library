@@ -11,16 +11,33 @@
 
 ## 安装
 
-1. 把本目录 clone 或复制到一个固定的位置。
-2. 在 DSH 里打开 **Plugins → Add plugin**，选中这个目录。
-3. 如果没看到「提示词」按钮，刷新一次页面。
+**方式一：npm 包**
+
+```sh
+dsh plugin --profile desktop add @virtin37/dsh-prompt-library@latest
+```
+
+这条命令只负责把包装进 profile。**还要启用**，任选一种：
+
+- 打开 DSH 的 **插件（Plugins）** 页，找到 `@virtin37/dsh-prompt-library`，把开关打开；
+- 或者对 DSH 里的 agent 说一句「启用 @virtin37/dsh-prompt-library」。
+
+启用后刷新一次页面；桌面版也可以重启客户端。
+
+> 为什么是两步：`dsh plugin` 只是把参数转给 pnpm，只改依赖；激活写在 profile 的 `dsh.profile.bundles` 里，这一步目前只有插件管理器（GUI 或 agent 工具）会做。
+
+**方式二：本地目录（开发时用）**
+
+1. clone 或复制本目录到固定位置；
+2. **Plugins → Add plugin** 选中该目录；
+3. 没看到「提示词」按钮就刷新一次。
 
 ## 入口
 
 - 右侧栏的 **提示词库** 标签页。它和会话并存，可以一边看对话一边挑模板；右侧栏的引导页与加号菜单里也会列出它。
 - 输入框工具行左侧的 **提示词** 按钮，打开同一个标签页。
 
-![右栏里的提示词库标签页](docs/panel.png)
+![右栏里的提示词库标签页](https://raw.githubusercontent.com/virtin37/dsh-prompt-library/main/docs/panel.png)
 
 ## 模板怎么写
 
@@ -38,7 +55,7 @@
 
 插入只是往输入框里写一次可撤销的编辑，不会发送。
 
-![展开的模板：空位列出、填入值、两个插入按钮](docs/fill.png)
+![展开的模板：空位列出、填入值、两个插入按钮](https://raw.githubusercontent.com/virtin37/dsh-prompt-library/main/docs/fill.png)
 
 ## 数据
 

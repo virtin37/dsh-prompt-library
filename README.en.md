@@ -18,6 +18,28 @@ into the composer — you still press send.
 
 ## Install
 
+**From npm**
+
+```sh
+dsh plugin --profile desktop add @virtin37/dsh-prompt-library@latest
+```
+
+That installs the package into the profile. It does **not** enable it — do one
+of these:
+
+- open **Plugins** in DSH, find `@virtin37/dsh-prompt-library`, and flip its
+  switch on;
+- or tell the DSH agent: "enable @virtin37/dsh-prompt-library".
+
+Then reload the page (or restart the desktop client once).
+
+> Why two steps: `dsh plugin` forwards its arguments to pnpm and only changes the
+> dependencies. Activation means writing the package name into the profile's
+> `dsh.profile.bundles`, which today only the plugin manager (the GUI or the
+> agent tool) does.
+
+**From a local directory (development)**
+
 1. Clone or copy this directory somewhere stable.
 2. In DSH open **Plugins → Add plugin** and select the directory.
 3. If the **Prompt** button does not appear, reload the page once.
@@ -30,7 +52,7 @@ into the composer — you still press send.
 - **Prompt** button at the left of the composer tool row, next to the permission
   and model controls, opens the same tab.
 
-![The prompt library tab in the right sidebar](docs/panel.png)
+![The prompt library tab in the right sidebar](https://raw.githubusercontent.com/virtin37/dsh-prompt-library/main/docs/panel.png)
 
 ## How a template works
 
@@ -57,7 +79,7 @@ characters on one line.
 
 Insert pushes one undoable edit into the composer; you still press send.
 
-![A template expanded, its blank listed with a value, and the two insert buttons](docs/fill.png)
+![A template expanded, its blank listed with a value, and the two insert buttons](https://raw.githubusercontent.com/virtin37/dsh-prompt-library/main/docs/fill.png)
 
 ## Data
 
